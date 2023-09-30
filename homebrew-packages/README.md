@@ -1,3 +1,3 @@
-# brew-packages
+# homebrew-packages
 
-Used to install the homebrew packages I use. 
+Install all homebrew packages.

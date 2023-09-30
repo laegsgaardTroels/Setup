@@ -1,4 +1,4 @@
 # git
 
-Install all git repos.
+Clone all git repos.
 
