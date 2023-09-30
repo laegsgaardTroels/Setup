@@ -1,4 +1,4 @@
-# Setup
+# git
 
-Setup of MacBook for development.
+Install all git repos.
 
