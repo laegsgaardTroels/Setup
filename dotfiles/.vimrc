@@ -1,3 +1,6 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ---- NOT USED ANYMORE, I SWITCHED TO NEOVIM -----------------
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Developer Guide:
 "
@@ -13,17 +16,32 @@
 " Run :PlugInstall to install.
 call plug#begin('~/.vim/plugged')
 
-"Declare the list of plugins.
+"Autocompletion
 Plug 'davidhalter/jedi-vim'
+
+"Git wrapper
 Plug 'tpope/vim-fugitive'
+
+"Git commit browser
 Plug 'junegunn/gv.vim'
-Plug 'hynek/vim-python-pep8-indent'
-Plug 'tpope/vim-surround'
+
+"Linting
 Plug 'w0rp/ale'
+
+"Statusline
 Plug 'itchyny/lightline.vim'
+
+"Fuzzy file finder
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+"Find virtualenv
 Plug 'jmcantrell/vim-virtualenv'
+
+"<Tab> for insert completion
+Plug 'ervandew/supertab'
+
+Plug 'Vimjas/vim-python-pep8-indent'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
@@ -32,9 +50,6 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Basics
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Copy indent from current line when starting a new line.
-" set auto indent
 
 " Use English spelling. Use :set spell in a document to see spelling
 " and ]s [s to go back and forth. And z= for suggestions.
@@ -64,7 +79,7 @@ set number
 
 " Set backspace to standard use
 " source: https://vi.stackexchange.com/questions/2162/why-doesnt-the-backspace-key-work-in-insert-mode
-set backspace=indent,eol,start
+set backspace=eol,start
 set whichwrap+=<,>,h,l
 
 " Assign leader
@@ -110,9 +125,9 @@ set tabstop=4
 set lbr
 set tw=500
 
-" set ai "Auto indent
-" set si "Smart indent
-" set wrap "Wrap lines
+set ai "Auto indent
+set si "Smart indent
+set wrap "Wrap lines
 
 " Copy to system clipboard with standard vim commands.
 if has("xterm_clipboard")
@@ -156,7 +171,7 @@ let g:jedi#force_py_version = 3
 
 "Jedi automatically starts the completion, if you type a dot, e.g. str., if
 "you if you don't want this:
-let g:jedi#popup_on_dot = 0
+let g:jedi#popup_on_dot = 1
 
 " Disable mapping to ,s because split command is mapped to this as well.
 " see <leader>s
@@ -164,7 +179,10 @@ let g:jedi#goto_stubs_command = ''
 
 " I don't want the docstring to popup during completion.
 " Source: https://github.com/davidhalter/jedi-vim
-autocmd FileType python setlocal completeopt-=preview
+" autocmd FileType python setlocal completeopt-=preview
+
+" => supertab
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " => Ale
 
@@ -181,7 +199,7 @@ map <leader>c :GV<CR>
 " => fzf
 nnoremap <leader>f :Rg<CR>
 
-"""""""""""""""""""""k""""""""
+""""""""""""""""""""""""""""""
 " => Visual mode related
 """"""""""""""""""""""""""""""
 
@@ -303,20 +321,6 @@ nnoremap p p=`]
 nnoremap <leader>n :cn<CR>zv
 nnoremap <leader>p :cp<CR>zv
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Python mapping
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Run current python file.
-nnoremap <Leader>p :!clear; python3 % <CR>
-
-" Add shortcut for debugging
-nnoremap <Leader>ipdb iimport ipdb; ipdb.set_trace()<Esc>
-
-" Start ipython fast with autoreload.
-" Protip in ipython you can run %history. Then use vims terminal normal mode
-" <C-W>N (capital N) to copy the useful piece and go back to insert mode again with i.
-nnoremap <leader>i :vertical rightbelow terminal<CR>ipython<CR>%load_ext autoreload<CR>%autoreload 2<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions

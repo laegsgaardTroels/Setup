@@ -6,7 +6,7 @@ all: gitrepos.txt
 	mkdir -p $(GITDIR) && cd $(GITDIR); \
 		mkdir -p $(OWNER) && cd $(OWNER); \
 		for repo_url in $(shell cat gitrepos.txt); do \
-			git clone $$repo_url; \
+			git clone $$repo_url || echo "$$repo_url has already been cloned \n"; \
 			done;
 
 .PHONY:
