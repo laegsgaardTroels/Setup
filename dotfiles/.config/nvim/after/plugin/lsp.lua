@@ -57,7 +57,7 @@ cmp.setup {
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
 		},
-		['<Tab>'] = cmp.mapping(function(fallback)
+		['<C-n>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
 			elseif luasnip.expand_or_jumpable() then
@@ -66,7 +66,7 @@ cmp.setup {
 				fallback()
 			end
 		end, { 'i', 's' }),
-		['<S-Tab>'] = cmp.mapping(function(fallback)
+		['<C-p>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
 			elseif luasnip.jumpable(-1) then
@@ -77,8 +77,8 @@ cmp.setup {
 		end, { 'i', 's' }),
 	}),
 	sources = {
-		{ name = 'nvim_lsp' },
-		{ name = 'luasnip' },
+		{ name = 'nvim_lsp', keyword_length=5},
+		{ name = 'luasnip', keyword_length=5 },
 	},
 	window = {
 		completion = {
@@ -126,5 +126,5 @@ vim.cmd("silent! unmap <leader>gs")
 
 -- snippets
 require("luasnip.loaders.from_vscode").lazy_load()
-vim.keymap.set({"i", "s"}, "<Tab>", function() luasnip.jump( 1) end, {silent = true})
-vim.keymap.set({"i", "s"}, "<S-Tab>", function() luasnip.jump(-1) end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-n>", function() luasnip.jump( 1) end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-p>", function() luasnip.jump(-1) end, {silent = true})

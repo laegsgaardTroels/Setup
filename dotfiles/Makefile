@@ -8,14 +8,14 @@ install: $(DOTFILE_DST) install_aliases install_ohmyzsh
 .PHONY: uninstall
 uninstall:
 	rm $(DOTFILE_DST)
-	cat $(HOME)/.zshrc | grep -wvE "source $(HOME)/.alias" > $(HOME)/.zshrc
+	cat $(HOME)/.zshrc | grep -wvE "source $(HOME)/.aliases" > $(HOME)/.zshrc
 
 
 .PHONY: install_aliases
 install_aliases:
 	cat $(HOME)/.zshrc \
-		| grep -qFx "source $(HOME)/.alias" \
-		|| echo "source $(HOME)/.alias" >> $(HOME)/.zshrc
+		| grep -qFx "source $(HOME)/.aliases" \
+		|| echo "source $(HOME)/.aliases" >> $(HOME)/.zshrc
 
 .PHONY: install_ohmyzsh
 install_ohmyzsh:
