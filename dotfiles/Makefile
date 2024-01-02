@@ -1,5 +1,5 @@
 # A list of the dotfiles one wish to create a symbolic link to from $(HOME)
-DOTFILES := .aliases .gitconfig .config/nvim
+DOTFILES := .aliases .gitconfig .config/nvim .pdbrc
 DOTFILE_DST := $(DOTFILES:%=$(HOME)/%)
 
 .PHONY: install
