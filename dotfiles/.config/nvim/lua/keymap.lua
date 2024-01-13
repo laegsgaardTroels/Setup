@@ -13,10 +13,13 @@ keymap.set("n", "<C-l>", "<C-w>l")
 keymap.set("n", "<C-h>", "<C-w>h")
 keymap.set("n", "<C-j>", "<C-w>j")
 keymap.set("n", "<C-k>", "<C-w>k")
-keymap.set("t", "<C-l>", "<C-\\><C-N>C-w>l")
-keymap.set("t", "<C-h>", "<C-\\><C-N>C-w>h")
-keymap.set("t", "<C-j>", "<C-\\><C-N>C-w>j")
-keymap.set("t", "<C-k>", "<C-\\><C-N>C-w>k")
+keymap.set("t", "<C-l>", "<C-\\><C-N><C-w>l")
+keymap.set("t", "<C-h>", "<C-\\><C-N><C-w>h")
+keymap.set("t", "<C-j>", "<C-\\><C-N><C-w>j")
+keymap.set("t", "<C-k>", "<C-\\><C-N><C-w>k")
+
+-- Normal mode in terminal mode
+keymap.set("t", "<C-k>", "<C-\\><C-n>")
 
 -- NetrwRefresh uses the <C-l> to refresh if it is not already mapped (uses hasmapto(...))
 keymap.set("n", "<C-r>", "<Plug>NetrwRefresh")
