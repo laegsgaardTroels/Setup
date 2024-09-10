@@ -1,6 +1,6 @@
 # Setup
 
-My developer setup for mac. 
+My developer setup for Mac. 
 
 ## Manual steps
 
