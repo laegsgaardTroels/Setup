@@ -1,6 +1,6 @@
 # Setup
 
-Setup of mac for development. 
+My developer setup for mac. 
 
 ## Manual steps
 
