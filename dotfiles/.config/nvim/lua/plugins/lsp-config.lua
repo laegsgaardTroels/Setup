@@ -10,7 +10,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "ruff_lsp", "pyright", "jedi_language_server", "html" },
+                ensure_installed = { "lua_ls", "ruff_lsp", "pyright", "jedi_language_server", "html", "pylsp" },
             })
         end,
     },
@@ -35,6 +35,30 @@ return {
             })
             lspconfig.html.setup({
                 capabilities = capabilities,
+            })
+            lspconfig.pylsp.setup({
+                capabilities = capabilities,
+                root_dir = function(fname)
+                    local root_files = {
+                        'pyproject.toml',
+                        'setup.py',
+                        'setup.cfg',
+                        'requirements.txt',
+                        'Pipfile',
+                    }
+                    unpack = table.unpack or unpack -- 5.1 compatibility
+                    return lspconfig.util.root_pattern(unpack(root_files))(fname)
+                end,
+                settings = {
+                    pylsp = {
+                        plugins = {
+                            pylint = { enabled = false },
+                            flake8 = { enabled = true },
+                            pycodestyle = { enabled = false },
+                            pyflakes = { enabled = false },
+                        }
+                    }
+                }
             })
         end,
     },

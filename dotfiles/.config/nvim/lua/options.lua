@@ -29,7 +29,7 @@ keymap.set("t", "<C-k>", "<C-\\><C-N><C-w>k")
 keymap.set("t", "<C-k>", "<C-\\><C-n>")
 
 -- NetrwRefresh uses the <C-l> to refresh if it is not already mapped (uses hasmapto(...))
--- keymap.set("n", "<C-r>", "<Plug>NetrwRefresh")
+keymap.set("n", "<C-12>", "<Plug>NetrwRefresh")
 
 -- Remove search results.
 keymap.set("", "<space>", "/")
