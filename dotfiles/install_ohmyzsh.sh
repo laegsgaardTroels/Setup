@@ -1,4 +1,7 @@
 #!/bin/bash
+
+plugins=()
+
 # Installs ohmyzsh if it is not already installed.
 if [ ! -d ~/.oh-my-zsh ]
 then
