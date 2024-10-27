@@ -1,9 +1,9 @@
 # A list of the dotfiles one wish to create a symbolic link to from $(HOME)
-DOTFILES := .zshrc .aliases .gitconfig .config/nvim .pdbrc
+DOTFILES := .oh-my-zsh/custom/aliases.zsh .gitconfig .config/nvim .pdbrc
 DOTFILE_DST := $(DOTFILES:%=$(HOME)/%)
 
 .PHONY: install
-install: $(DOTFILE_DST) install_ohmyzsh
+install: install_ohmyzsh $(DOTFILE_DST) 
 
 .PHONY: uninstall
 uninstall:
@@ -15,5 +15,4 @@ install_ohmyzsh:
 
 $(DOTFILE_DST): $(HOME)/%: $(shell pwd)/%
 	mkdir -p $(@D)
-	rm -rf $@
 	ln -s -f $< $@
