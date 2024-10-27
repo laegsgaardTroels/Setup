@@ -17,7 +17,7 @@ function _gg() {
 }
 
 function _gv() {
-    dir=$((cat ~/.gg; dirs -l -p | cat | sort -u | fzf --preview "tree -L 1 -C --noreport {}" --preview-window=70%,border-double,top)
+    dir=$((cat ~/.gg; dirs -l -p) | cat | sort -u | fzf --preview "tree -L 1 -C --noreport {}" --preview-window=70%,border-double,top)
     cd $dir
     nvim $dir
 }
