@@ -1,6 +1,4 @@
-alias ll="ls -la"
-
-function cd() {
+function _cd() {
     builtin cd "$@"
     pwd >> ~/.gg
     sort -o ~/.gg -u ~/.gg
@@ -14,17 +12,17 @@ function cd() {
     fi
 }
 
-function gg() {
+function _gg() {
     cd $((cat ~/.gg; dirs -l -p; ls -d ~/Git/*; ls -d ~/Setup/dotfiles) | cat | sort -u | fzf --preview "tree -L 1 -C --noreport {}" --preview-window=70%,border-double,top)
 }
 
-function gv() {
+function _gv() {
     dir=$((cat ~/.gg; dirs -l -p; ls -d ~/Git/*; ls -d ~/Setup/dotfiles) | cat | sort -u | fzf --preview "tree -L 1 -C --noreport {}" --preview-window=70%,border-double,top)
     cd $dir
     nvim $dir
 }
 
-function gl() {
+function _gl() {
     echo "Branches"
     git for-each-ref --sort='-authordate:iso8601' --format=' %(authordate:relative)%09%(refname:short)' refs/heads
     echo "Worktrees"
@@ -33,3 +31,9 @@ function gl() {
 
 alias vim=nvim
 alias vi=nvim
+alias ll="ls -la"
+
+alias cd=_cd
+alias gg=_gg
+alias gv=_gv
+alias gl=_gl
