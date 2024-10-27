@@ -22,5 +22,5 @@ install_ohmyzsh:
 	./install_ohmyzsh.sh
 
 $(DOTFILE_DST): $(HOME)/%: $(shell pwd)/%
-	mkdir -p $@
+	mkdir -p $(@D)
 	ln -s -f $< $@
