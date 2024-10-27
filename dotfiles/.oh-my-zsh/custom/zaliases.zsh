@@ -13,11 +13,11 @@ function _cd() {
 }
 
 function _gg() {
-    cd $((cat ~/.gg; dirs -l -p; ls -d ~/Git/*; ls -d ~/Setup/dotfiles) | cat | sort -u | fzf --preview "tree -L 1 -C --noreport {}" --preview-window=70%,border-double,top)
+    cd $((cat ~/.gg; dirs -l -p) | cat | sort -u | fzf --preview "tree -L 1 -C --noreport {}" --preview-window=70%,border-double,top)
 }
 
 function _gv() {
-    dir=$((cat ~/.gg; dirs -l -p; ls -d ~/Git/*; ls -d ~/Setup/dotfiles) | cat | sort -u | fzf --preview "tree -L 1 -C --noreport {}" --preview-window=70%,border-double,top)
+    dir=$((cat ~/.gg; dirs -l -p | cat | sort -u | fzf --preview "tree -L 1 -C --noreport {}" --preview-window=70%,border-double,top)
     cd $dir
     nvim $dir
 }
