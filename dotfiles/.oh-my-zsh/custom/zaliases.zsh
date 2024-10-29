@@ -1,4 +1,4 @@
-function _cd() {
+function cd() {
     builtin cd "$@"
     pwd >> ~/.gg
     sort -o ~/.gg -u ~/.gg
@@ -33,7 +33,6 @@ alias vim=nvim
 alias vi=nvim
 alias ll="ls -la"
 
-alias cd=_cd
 alias gg=_gg
 alias gv=_gv
 alias gl=_gl
