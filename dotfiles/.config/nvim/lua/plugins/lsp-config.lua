@@ -1,4 +1,5 @@
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+-- :help lspconfig-all
 return {
     {
         "williamboman/mason.nvim",
@@ -10,7 +11,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "ruff_lsp", "pyright", "jedi_language_server", "html", "pylsp" },
+                ensure_installed = { "lua_ls", "ruff", "pyright", "jedi_language_server", "html", "pylsp" },
             })
         end,
     },
@@ -18,25 +19,25 @@ return {
         "neovim/nvim-lspconfig",
         config = function()
             local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-            local lspconfig = require("lspconfig")
 
-            lspconfig.lua_ls.setup({
-                capabilities = capabilities,
-                settings = { Lua = { diagnostics = { globals = { 'vim' } } } },
-            })
-            lspconfig.ruff_lsp.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.pyright.setup({
+            vim.lsp.config(
+                "lua_ls", {
+                    capabilities = capabilities,
+                    settings = { Lua = { diagnostics = { globals = { 'vim' } } } },
+                })
+            vim.lsp.config("ruff", {
                 capabilities = capabilities,
             })
-            lspconfig.jedi_language_server.setup({
+            vim.lsp.config("pyright", {
                 capabilities = capabilities,
             })
-            lspconfig.html.setup({
+            vim.lsp.config("jedi_language_server", {
                 capabilities = capabilities,
             })
-            lspconfig.pylsp.setup({
+            vim.lsp.config("html", {
+                capabilities = capabilities,
+            })
+            vim.lsp.config("pylsp", {
                 capabilities = capabilities,
                 root_dir = function(fname)
                     local root_files = {
@@ -46,8 +47,7 @@ return {
                         'requirements.txt',
                         'Pipfile',
                     }
-                    unpack = table.unpack or unpack -- 5.1 compatibility
-                    return lspconfig.util.root_pattern(unpack(root_files))(fname)
+                    return vim.fs.root(0, root_files)
                 end,
                 settings = {
                     pylsp = {

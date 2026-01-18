@@ -11,9 +11,9 @@ local option = vim.opt
 keymap.set("n", "<leader>g", "<C-]>")
 
 -- Fast save/exit
-keymap.set({"i", "n"}, "<leader>w", ":w!<cr>")
-keymap.set({"i", "n"}, "<leader>q", ":q!<cr>")
-keymap.set({"t"}, "<leader>q", "<C-\\><C-n>:q!<cr>")
+keymap.set({ "i", "n" }, "<leader>w", ":w!<cr>")
+keymap.set({ "i", "n" }, "<leader>q", ":q!<cr>")
+keymap.set({ "t" }, "<leader>q", "<C-\\><C-n>:q!<cr>")
 
 -- Move between windows easier
 keymap.set("n", "<C-l>", "<C-w>l")
@@ -59,6 +59,9 @@ end)
 
 -- View git tree.
 keymap.set('n', '<leader>c', ':GV<CR>')
+
+-- Rename
+keymap.set('n', '<leader>r', vim.lsp.buf.rename)
 
 
 ----------------------------------- Options -----------------------------------
